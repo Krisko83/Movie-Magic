@@ -142,17 +142,6 @@
       "imageUrl": "/img/the-little-mermaid.jpg",
       "rating": 7.2,
       "description": "A young mermaid dreams of living in the human world and makes a life-changing deal with a sea witch to pursue her destiny."
-    },
-    {
-      "title": "Terminator",
-      "category": "",
-      "genre": "cas",
-      "director": "cas",
-      "year": "2131",
-      "imageUrl": "sdff",
-      "rating": "2",
-      "description": "saas",
-      "id": "c728dc98-7de5-4d69-bd34-dae2baa2aa72"
     }
   ]
 }

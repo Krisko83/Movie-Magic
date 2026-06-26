@@ -1,6 +1,6 @@
 import { read } from 'fs';
 import fs from 'fs/promises';
-import { v4 } from 'uuid'
+import { v4 as uuid } from 'uuid'
 
 async function readDb(colection) {
     const dbContent = await fs.readFile('./src/db.json', { encoding: 'utf8' });
@@ -30,8 +30,8 @@ async function writeDb(db) {
 
 async function create(movieData) {
     const db = await readDb();
-    movieData.id = v4();
-    
+    movieData.id = uuid();
+
     db.movies.push(movieData);
 
     await writeDb(db)
