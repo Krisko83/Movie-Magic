@@ -1,0 +1,26 @@
+{
+  "name": "movie-magic",
+  "version": "1.0.0",
+  "description": "Back-End Workshop",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krisko83/Movie-Magic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Krisko83/Movie-Magic/issues"
+  },
+  "homepage": "https://github.com/Krisko83/Movie-Magic#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-handlebars": "^9.0.1"
+  }
+}
