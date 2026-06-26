@@ -7,7 +7,7 @@
       "genre": "Sci-Fi",
       "director": "Christopher Nolan",
       "year": 2010,
-      "imageURL": "https://via.placeholder.com/300x450?text=Inception",
+      "imageUrl": "https://via.placeholder.com/300x450?text=Inception",
       "rating": 8.8,
       "description": "A skilled thief enters people's dreams to steal secrets but is given the impossible task of planting an idea into someone's mind."
     },
@@ -18,7 +18,7 @@
       "genre": "Drama",
       "director": "Frank Darabont",
       "year": 1994,
-      "imageURL": "https://via.placeholder.com/300x450?text=Shawshank",
+      "imageUrl": "https://via.placeholder.com/300x450?text=Shawshank",
       "rating": 9.3,
       "description": "A banker sentenced to life in prison forms an unlikely friendship and never loses hope of freedom."
     },
@@ -29,7 +29,7 @@
       "genre": "Action",
       "director": "Christopher Nolan",
       "year": 2008,
-      "imageURL": "https://via.placeholder.com/300x450?text=Dark+Knight",
+      "imageUrl": "https://via.placeholder.com/300x450?text=Dark+Knight",
       "rating": 9.0,
       "description": "Batman faces his greatest challenge as the Joker unleashes chaos across Gotham City."
     },
@@ -40,7 +40,7 @@
       "genre": "Adventure",
       "director": "Christopher Nolan",
       "year": 2014,
-      "imageURL": "https://via.placeholder.com/300x450?text=Interstellar",
+      "imageUrl": "https://via.placeholder.com/300x450?text=Interstellar",
       "rating": 8.7,
       "description": "A group of astronauts travel through a wormhole in search of a new home for humanity."
     },
@@ -51,7 +51,7 @@
       "genre": "Thriller",
       "director": "Bong Joon-ho",
       "year": 2019,
-      "imageURL": "https://via.placeholder.com/300x450?text=Parasite",
+      "imageUrl": "https://via.placeholder.com/300x450?text=Parasite",
       "rating": 8.5,
       "description": "A poor family cleverly infiltrates the lives of a wealthy household, leading to unexpected consequences."
     },
@@ -62,7 +62,7 @@
       "genre": "Sci-Fi",
       "director": "The Wachowskis",
       "year": 1999,
-      "imageURL": "https://via.placeholder.com/300x450?text=Matrix",
+      "imageUrl": "https://via.placeholder.com/300x450?text=Matrix",
       "rating": 8.7,
       "description": "A hacker discovers that reality is a simulation and joins a rebellion against intelligent machines."
     },
@@ -73,7 +73,7 @@
       "genre": "Historical Drama",
       "director": "Ridley Scott",
       "year": 2000,
-      "imageURL": "https://via.placeholder.com/300x450?text=Gladiator",
+      "imageUrl": "https://via.placeholder.com/300x450?text=Gladiator",
       "rating": 8.5,
       "description": "A betrayed Roman general fights his way through the gladiator arena to seek justice."
     },
@@ -84,7 +84,7 @@
       "genre": "Adventure",
       "director": "Peter Jackson",
       "year": 2001,
-      "imageURL": "https://via.placeholder.com/300x450?text=LOTR",
+      "imageUrl": "https://via.placeholder.com/300x450?text=LOTR",
       "rating": 8.9,
       "description": "A young hobbit begins an epic journey to destroy a powerful ring before evil can claim it."
     },
@@ -95,7 +95,7 @@
       "genre": "Music",
       "director": "Damien Chazelle",
       "year": 2014,
-      "imageURL": "https://via.placeholder.com/300x450?text=Whiplash",
+      "imageUrl": "https://via.placeholder.com/300x450?text=Whiplash",
       "rating": 8.5,
       "description": "A talented drummer pushes himself to the limit under the guidance of a ruthless music instructor."
     },
@@ -106,44 +106,42 @@
       "genre": "Action",
       "director": "Bob Persichetti, Peter Ramsey, Rodney Rothman",
       "year": 2018,
-      "imageURL": "https://via.placeholder.com/300x450?text=Spider-Verse",
+      "imageUrl": "https://via.placeholder.com/300x450?text=Spider-Verse",
       "rating": 8.4,
       "description": "Teenager Miles Morales becomes Spider-Man and joins heroes from other dimensions to save the multiverse."
     },
-    [
-      {
-        "id": "550e8400-e29b-41d4-a716-446655440001",
-        "title": "Home Alone",
-        "category": "Holiday",
-        "genre": "Comedy",
-        "director": "Chris Columbus",
-        "year": 1990,
-        "imageURL": "/img/home-alone.jpeg",
-        "rating": 7.7,
-        "description": "An eight-year-old boy is accidentally left behind when his family leaves for Christmas vacation and must defend his home from two burglars."
-      },
-      {
-        "id": "550e8400-e29b-41d4-a716-446655440002",
-        "title": "Jungle Cruise",
-        "category": "Adventure",
-        "genre": "Action",
-        "director": "Jaume Collet-Serra",
-        "year": 2021,
-        "imageURL": "/img/jungle-cruise.jpeg",
-        "rating": 6.6,
-        "description": "A riverboat captain and a determined scientist embark on a dangerous expedition through the Amazon in search of a legendary healing tree."
-      },
-      {
-        "id": "550e8400-e29b-41d4-a716-446655440003",
-        "title": "The Little Mermaid",
-        "category": "Family",
-        "genre": "Fantasy",
-        "director": "Rob Marshall",
-        "year": 2023,
-        "imageURL": "/img/the-little-mermaid.jpeg",
-        "rating": 7.2,
-        "description": "A young mermaid dreams of living in the human world and makes a life-changing deal with a sea witch to pursue her destiny."
-      }
-    ]
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "title": "Home Alone",
+      "category": "Holiday",
+      "genre": "Comedy",
+      "director": "Chris Columbus",
+      "year": 1990,
+      "imageUrl": "/img/home-alone.jpeg",
+      "rating": 7.7,
+      "description": "An eight-year-old boy is accidentally left behind when his family leaves for Christmas vacation and must defend his home from two burglars."
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "title": "Jungle Cruise",
+      "category": "Adventure",
+      "genre": "Action",
+      "director": "Jaume Collet-Serra",
+      "year": 2021,
+      "imageUrl": "/img/jungle-cruise.jpeg",
+      "rating": 6.6,
+      "description": "A riverboat captain and a determined scientist embark on a dangerous expedition through the Amazon in search of a legendary healing tree."
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440003",
+      "title": "The Little Mermaid",
+      "category": "Family",
+      "genre": "Fantasy",
+      "director": "Rob Marshall",
+      "year": 2023,
+      "imageUrl": "/img/the-little-mermaid.jpg",
+      "rating": 7.2,
+      "description": "A young mermaid dreams of living in the human world and makes a life-changing deal with a sea witch to pursue her destiny."
+    }
   ]
 }

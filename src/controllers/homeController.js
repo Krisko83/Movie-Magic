@@ -1,11 +1,14 @@
 import { Router } from 'express';
+import movieService from '../services/movieService.js';
  
 
 const homeController = Router();
 
 
-homeController.get('/', (req, res) => {   
-    res.render('home')
+homeController.get('/', async (req, res) => {   
+    const movies = await movieService.getAll();
+    
+    res.render('home', { movies })
 });
 
 homeController.get('/about', (req, res) => {
@@ -21,6 +24,15 @@ homeController.get('/create', (req, res) => {
     res.render('create')
 });
 
+homeController.get('/details/:id', async (req, res) => {
+    const movieId = req.params.id;  
+    
+    const movie = await movieService.getMovieById(movieId);
+    const ratingValue = Math.floor(movie.rating);
+    const rating = '&#x2605;'.repeat(ratingValue);
+
+    res.render('details', { movie , rating })
+})
 
 homeController.get('*url', (req, res) => {
     res.render('404')

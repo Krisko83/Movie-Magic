@@ -10,9 +10,22 @@ async function readDb(colection) {
     }
     return colection ? db[colection] : db;
 }
-export async function getAllMovies() {    
-    const movies = await readDb('movies'); 
-    
+ async function getAll() {    
+    const movies = await readDb('movies');     
     return movies;
 } 
+
+async function getMovieById(movieId) {
+    const movies = await getAll();
+    const movie = movies.find(m => m.id === movieId);
+    
+    return movie;
+}
+
+const movieRepository = {
+    getAll,
+    getMovieById
+};
+
+export default movieRepository;
 
