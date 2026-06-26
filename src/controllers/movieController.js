@@ -7,8 +7,11 @@ movieController.get('/create', (req, res) => {
 });
 
 movieController.post('/create', (req, res) => {
-    console.log(req);
+    console.log(req.body);
     
 })
+
+ 
+
 
 export default movieController;
