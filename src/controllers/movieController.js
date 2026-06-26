@@ -13,9 +13,17 @@ movieController.post('/create', async (req, res) => {
     await movieService.create(newMovie);
     res.redirect('/');
 
-})
+});
 
+movieController.get('/:movieId', async (req, res) => {
+    const movieId = req.params.movieId;  
+    
+    const movie = await movieService.getMovieById(movieId);
+    const ratingValue = Math.floor(movie.rating);
+    const rating = '&#x2605;'.repeat(ratingValue);
 
+    res.render('movies/details', { movie , rating })
+}); 
 
 
 export default movieController;

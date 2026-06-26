@@ -8,9 +8,11 @@ async function readDb(colection) {
 
     if(colection && !db.hasOwnProperty(colection)) {
         throw new Error('No colection')
-    }
+    };
+
     return colection ? db[colection] : db;
-}
+};
+
  async function getAll() {    
     const movies = await readDb('movies');     
     return movies;
@@ -20,13 +22,19 @@ async function getMovieById(movieId) {
     const movies = await getAll();
     const movie = movies.find(m => m.id === movieId);
     
+    if(!movie) {
+        throw new Error('No movie found!')
+    };
+    
     return movie;
-}
+};
+
 
 async function writeDb(db) {
     const content = JSON.stringify(db, null, 2);
     await fs.writeFile('./src/db.json', content, { encoding: 'utf-8'});
 };
+
 
 async function create(movieData) {
     const db = await readDb();

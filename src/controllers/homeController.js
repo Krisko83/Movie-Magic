@@ -20,7 +20,7 @@ homeController.get('/search', (req, res) => {
 });
  
 
-homeController.get('/details/:id', async (req, res) => {
+homeController.get('/movies/:id/details', async (req, res) => {
     const movieId = req.params.id;  
     
     const movie = await movieService.getMovieById(movieId);
@@ -28,10 +28,7 @@ homeController.get('/details/:id', async (req, res) => {
     const rating = '&#x2605;'.repeat(ratingValue);
 
     res.render('details', { movie , rating })
-}) 
+}); 
 
-// homeController.get('*url', (req, res) => {
-//     res.render('404')
-// });
-
+ 
 export default homeController;
