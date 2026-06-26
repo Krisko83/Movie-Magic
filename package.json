@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Krisko83/Movie-Magic#readme",
   "dependencies": {
     "express": "^5.2.1",
-    "express-handlebars": "^9.0.1"
+    "express-handlebars": "^9.0.1",
+    "uuid": "^14.0.1"
   }
 }
