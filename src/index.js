@@ -10,9 +10,11 @@ app.engine('hbs', engine(
 app.set('view engine', 'hbs');
 app.set('views', './src/views')
 
+
 app.use(express.static('./src/public'));
 
 app.use('/', homeController);
+
 
 
 app.listen(5000, () => console.log('Server is running at http://localhost:5000...'));
