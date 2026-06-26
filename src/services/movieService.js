@@ -9,9 +9,14 @@ function getMovieById(movieId) {
     return movieRepository.getMovieById(movieId)
 }
 
+function create(movieData) {
+   return movieRepository.create(movieData);
+};
+
 const movieService = {
     getAll,
-    getMovieById
+    getMovieById,
+    create
 }
 
 export default movieService;

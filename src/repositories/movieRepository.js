@@ -1,5 +1,6 @@
+import { read } from 'fs';
 import fs from 'fs/promises';
-
+import { v4 } from 'uuid'
 
 async function readDb(colection) {
     const dbContent = await fs.readFile('./src/db.json', { encoding: 'utf8' });
@@ -22,9 +23,24 @@ async function getMovieById(movieId) {
     return movie;
 }
 
+async function writeDb(db) {
+    const content = JSON.stringify(db, null, 2);
+    await fs.writeFile('./src/db.json', content, { encoding: 'utf-8'});
+};
+
+async function create(movieData) {
+    const db = await readDb();
+    movieData.id = v4();
+    
+    db.movies.push(movieData);
+
+    await writeDb(db)
+};
+
 const movieRepository = {
     getAll,
-    getMovieById
+    getMovieById,
+    create
 };
 
 export default movieRepository;
