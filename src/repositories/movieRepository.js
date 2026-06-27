@@ -13,10 +13,9 @@ async function readDb(colection) {
     return colection ? db[colection] : db;
 };
 
- async function getAll(filter= {}) {    
+ async function getAll(filter = {}) {    
     let movies = await readDb('movies');     
-    console.log(filter);
-    
+ 
     if(filter.search) {
        movies = movies.filter(movie => movie.title.toLowerCase().includes(filter.search.toLowerCase()));
     };

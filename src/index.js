@@ -2,7 +2,8 @@ import express from 'express';
 import { engine } from 'express-handlebars';
 import homeController from './controllers/homeController.js';
 import movieController from './controllers/movieController.js';
-import routes from './views/routes.js';
+import routes from './routes.js';
+ 
 
 const app = express();
 
