@@ -150,9 +150,31 @@
       "director": "James Cameron",
       "year": "1992",
       "imageUrl": "https://imgs.search.brave.com/8vOy86ZwdwkeGSJgocZupRPjs3pkhqTyxa3Aeod6xmw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvZW4vdGh1bWIv/NS81ZS9UZXJtaW5h/dG9yXzItSnVkZ21l/bnRfRGF5LnBuZy8y/NTBweC1UZXJtaW5h/dG9yXzItSnVkZ21l/bnRfRGF5LnBuZw",
-      "rating": "10",
+      "rating": 10,
       "description": "A cyborg assassin from the future attempts to find and kill a young woman who is destined to give birth to a warrior that will lead a resistance to save humankind from extinction.",
       "id": "da7badad-b8d5-49d9-bc9e-f2b71f994762"
+    },
+    {
+      "title": "Terminator",
+      "category": "",
+      "genre": "Action",
+      "director": "James Cameron",
+      "year": "1984",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMjAyMTk3ODA2MF5BMl5BanBnXkFtZTcwMTkzNDQyNA@@._V1_.jpg",
+      "rating": 10,
+      "description": "A cyborg assassin from the future attempts to find and kill a young woman who is destined to give birth to a warrior that will lead a resistance to save humankind from extinction",
+      "id": "4eb06ed1-0e8a-4d90-861a-e5bb36eaca05"
+    },
+    {
+      "title": "Home Alone 2: Lost in New York",
+      "category": "movie",
+      "genre": "Comedy",
+      "director": "Chris Columbus",
+      "year": "1992",
+      "imageUrl": "https://imgs.search.brave.com/sybVzoVeriEpCyrHdJ5D9Eck-Qm7Oo4pcf-8dPgrfdY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzM5L2Qx/L2VlLzM5ZDFlZTJi/ODU1OGEwNjZiM2Fk/MTkwNDI2NWY3ZWUy/LmpwZw",
+      "rating": 8.5,
+      "description": "Kevin is separated from his family again when he accidentally boards a flight to New York City during a Christmas trip to Miami. However he crosses paths with the same burglars, who now plan to rob a toy store on Christmas Eve.",
+      "id": "738475dc-e01d-4d5d-bec7-c1c35f7a15a9"
     }
   ]
 }

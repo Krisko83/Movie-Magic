@@ -52,7 +52,8 @@ async function writeDb(db) {
 async function create(movieData) {
     const db = await readDb();
     movieData.id = uuid();
-
+    movieData.rating = Number(movieData.rating);
+    
     db.movies.push(movieData);
 
     await writeDb(db)
