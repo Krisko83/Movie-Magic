@@ -7,12 +7,10 @@ movieController.get('/create', (req, res) => {
     res.render('movies/create')
 });
 
-movieController.post('/create', async (req, res) => {
-    const newMovie = req.body;
+movieController.get('/search',async (req, res) => {
+     const movies = await movieService.getAll();
 
-    await movieService.create(newMovie);
-    res.redirect('/');
-
+    res.render('movies/search', { movies })
 });
 
 movieController.get('/:movieId', async (req, res) => {
@@ -25,5 +23,14 @@ movieController.get('/:movieId', async (req, res) => {
     res.render('movies/details', { movie , rating })
 }); 
 
+movieController.post('/create', async (req, res) => {
+    const newMovie = req.body;
+
+    await movieService.create(newMovie);
+    res.redirect('/');
+
+});
+
+ 
 
 export default movieController;
