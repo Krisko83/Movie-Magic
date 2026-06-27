@@ -8,8 +8,11 @@ movieController.get('/create', (req, res) => {
 });
 
 movieController.get('/search',async (req, res) => {
+    const searchQuery = req.query; 
      const movies = await movieService.getAll();
 
+     console.log(searchQuery);
+     
     res.render('movies/search', { movies })
 });
 
