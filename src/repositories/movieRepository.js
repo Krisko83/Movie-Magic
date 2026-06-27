@@ -13,8 +13,22 @@ async function readDb(colection) {
     return colection ? db[colection] : db;
 };
 
- async function getAll() {    
-    const movies = await readDb('movies');     
+ async function getAll(filter= {}) {    
+    let movies = await readDb('movies');     
+    console.log(filter);
+    
+    if(filter.search) {
+       movies = movies.filter(movie => movie.title.toLowerCase().includes(filter.search.toLowerCase()));
+    };
+
+    if(filter.genre) {
+       movies = movies.filter(movie => movie.genre.toLowerCase() === filter.genre.toLowerCase());
+    };
+
+    if(filter.year) {
+       movies = movies.filter(movie => movie.year === filter.year);
+    };
+
     return movies;
 } 
 
