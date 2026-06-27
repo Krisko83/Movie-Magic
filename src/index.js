@@ -11,12 +11,11 @@ app.engine('hbs', engine(
     { extname: 'hbs' }
 ));
 app.set('view engine', 'hbs');
-app.set('views', './src/views')
-
+app.set('views', './src/views');
 
 app.use(express.static('./src/public'));
 
-app.use(express.urlencoded( { extended: false }));
+app.use(express.urlencoded( { extended: false })); //to be able in req.body to read form values in post request
 
 app.use(routes);
 
