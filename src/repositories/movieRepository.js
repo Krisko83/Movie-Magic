@@ -4,7 +4,21 @@ import { prisma } from '../../prisma/lib/prisma.js'
  
 
  async function getAll(filter = {}) {    
-    let movies = await prisma.movie.findMany();     
+    filter.year = Number(filter.year);
+
+    let movies = await prisma.movie.findMany({
+        where: {
+            year: filter.year || undefined,
+            title: {
+                contains: filter.search || undefined,
+                mode: 'insensitive'
+            },
+            genre: {
+                equals: filter.genre || undefined,
+                mode: 'insensitive'
+            }
+        }
+    });     
  
     // if(filter.search) {
     //    movies = movies.filter(movie => movie.title.toLowerCase().includes(filter.search.toLowerCase()));

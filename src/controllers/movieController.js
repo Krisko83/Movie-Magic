@@ -9,15 +9,15 @@ movieController.get('/create', (req, res) => {
 
 movieController.get('/search', async (req, res) => {
     const filter = req.query;
- 
+    console.log(filter);
+    
     const movies = await movieService.getAll(filter);
 
     res.render('movies/search', { movies, filter, pageTitle: 'Search Movies' })
 });
 
 movieController.get('/:movieId', async (req, res) => {
-    const movieId = req.params.movieId;
-    console.log(movieId);
+    const movieId = req.params.movieId;   
     
     const movie = await movieService.getMovieById(movieId);
     const ratingValue = Math.floor(movie.rating);
