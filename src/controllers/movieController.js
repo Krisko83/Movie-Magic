@@ -5,45 +5,42 @@ import artistService from '../services/artistService.js';
 const movieController = Router();
 
 movieController.get('/create', (req, res) => {
-    res.render('movies/create', {pageTitle: 'Create Movie'})
+    res.render('movies/create', { pageTitle: 'Create Movie' })
 });
 
 movieController.get('/search', async (req, res) => {
     const filter = req.query;
     console.log(filter);
-    
+
     const movies = await movieService.getAll(filter);
 
     res.render('movies/search', { movies, filter, pageTitle: 'Search Movies' })
 });
 
 movieController.get('/:movieId', async (req, res) => {
-    const movieId = req.params.movieId;   
-    
-    const movie = await movieService.getMovieById(movieId);
-    const ratingValue = Math.floor(movie.rating);
-    const rating = '&#x2605;'.repeat(ratingValue);
-     
-   const artistCast =  movie.artists;
-    
-    res.render('movies/details', { movie, rating, artistCast, pageTitle: 'Movie Details' })
+    const movieId = req.params.movieId;
+
+    const movie = await movieService.getMovieById(movieId); 
+    const rating = '&#x2605;'.repeat(Math.floor(movie.rating));
+ 
+    res.render('movies/details', { movie, rating, pageTitle: 'Movie Details' })
 });
 
 movieController.get('/:movieId/attach', async (req, res) => {
-    const movieId = req.params.movieId;   
-    
-    const movie = await movieService.getMovieById(movieId);    
+    const movieId = req.params.movieId;
+
+    const movie = await movieService.getMovieById(movieId);
     const artists = await artistService.getAll();
 
     res.render('movies/attach', { movie, artists, pageTitle: 'Attach Artist' })
 });
 
 movieController.post('/:movieId/attach', async (req, res) => {
-    const movieId = req.params.movieId;   
+    const movieId = req.params.movieId;
     const artistId = req.body.artist;
 
-   movieService.attachArtist(movieId, artistId);
- 
+    movieService.attachArtist(movieId, artistId);
+
     res.redirect(`/movies/${movieId}`);
 });
 
