@@ -10,6 +10,9 @@ function getMovieById(movieId) {
 }
 
 function create(movieData) {
+    movieData.year = Number(movieData.year);
+    movieData.rating = Number(movieData.rating);
+    
    return movieRepository.create(movieData);
 };
 

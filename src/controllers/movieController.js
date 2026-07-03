@@ -17,7 +17,8 @@ movieController.get('/search', async (req, res) => {
 
 movieController.get('/:movieId', async (req, res) => {
     const movieId = req.params.movieId;
-
+    console.log(movieId);
+    
     const movie = await movieService.getMovieById(movieId);
     const ratingValue = Math.floor(movie.rating);
     const rating = '&#x2605;'.repeat(ratingValue);

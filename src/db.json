@@ -14,7 +14,7 @@
     {
       "id": "9d8a7f7d-3f78-4d8c-bb57-8d8b73a4f902",
       "title": "The Shawshank Redemption",
-      "category": "Classic",
+      "category": "Movie",
       "genre": "Drama",
       "director": "Frank Darabont",
       "year": "1994",
@@ -25,7 +25,7 @@
     {
       "id": "f24e69d3-0cb4-42af-9d0c-1f66d36b7c03",
       "title": "The Dark Knight",
-      "category": "Blockbuster",
+      "category": "Movie",
       "genre": "Action",
       "director": "Christopher Nolan",
       "year": "2008",
@@ -36,7 +36,7 @@
     {
       "id": "bc72c89d-8f14-45d3-9e7b-3ab1fd3f5d04",
       "title": "Interstellar",
-      "category": "Sci-Fi",
+      "category": "Movie",
       "genre": "Adventure",
       "director": "Christopher Nolan",
       "year": "2014",
@@ -47,7 +47,7 @@
     {
       "id": "2d64ef39-1f74-43b5-a4f2-98e7d7cdd305",
       "title": "Parasite",
-      "category": "Award Winner",
+      "category": "Movie",
       "genre": "Thriller",
       "director": "Bong Joon-ho",
       "year": "2019",
@@ -58,7 +58,7 @@
     {
       "id": "81f9a9ab-92d4-4af2-b29f-27d1c40b7b06",
       "title": "The Matrix",
-      "category": "Classic",
+      "category": "Movie",
       "genre": "Sci-Fi",
       "director": "The Wachowskis",
       "year": "1999",
@@ -69,7 +69,7 @@
     {
       "id": "c75ef1d7-8d11-4f77-8a4e-59d63b8ec907",
       "title": "Gladiator",
-      "category": "Epic",
+      "category": "Movie",
       "genre": "Historical Drama",
       "director": "Ridley Scott",
       "year": "2000",
@@ -80,7 +80,7 @@
     {
       "id": "5b73d4ec-5d4e-4cf0-a1d7-b17d69b6e208",
       "title": "The Lord of the Rings: The Fellowship of the Ring",
-      "category": "Fantasy",
+      "category": "Movie",
       "genre": "Adventure",
       "director": "Peter Jackson",
       "year": "2001",
@@ -91,7 +91,7 @@
     {
       "id": "a86c2b3d-9f90-4b92-bfd3-8f43a8db6509",
       "title": "Whiplash",
-      "category": "Drama",
+      "category": "Movie",
       "genre": "Music",
       "director": "Damien Chazelle",
       "year": "2014",
@@ -102,7 +102,7 @@
     {
       "id": "e4c0f2d5-6d8e-4b91-8b36-0f5a3d2b9a10",
       "title": "Spider-Man: Into the Spider-Verse",
-      "category": "Animation",
+      "category": "Movie",
       "genre": "Action",
       "director": "Bob Persichetti, Peter Ramsey, Rodney Rothman",
       "year": "2018",
@@ -113,7 +113,7 @@
     {
       "id": "550e8400-e29b-41d4-a716-446655440001",
       "title": "Home Alone",
-      "category": "Holiday",
+      "category": "Movie",
       "genre": "Comedy",
       "director": "Chris Columbus",
       "year": "1990",
@@ -124,7 +124,7 @@
     {
       "id": "550e8400-e29b-41d4-a716-446655440002",
       "title": "Jungle Cruise",
-      "category": "Adventure",
+      "category": "Movie",
       "genre": "Action",
       "director": "Jaume Collet-Serra",
       "year": "2021",
@@ -135,7 +135,7 @@
     {
       "id": "550e8400-e29b-41d4-a716-446655440003",
       "title": "The Little Mermaid",
-      "category": "Family",
+      "category": "Movie",
       "genre": "Fantasy",
       "director": "Rob Marshall",
       "year": "2023",
@@ -145,7 +145,7 @@
     },
     {
       "title": "Terminator 2",
-      "category": "movie",
+      "category": "Movie",
       "genre": "Action",
       "director": "James Cameron",
       "year": "1992",
@@ -156,7 +156,7 @@
     },
     {
       "title": "Terminator",
-      "category": "",
+      "category": "Movie",
       "genre": "Action",
       "director": "James Cameron",
       "year": "1984",
@@ -167,7 +167,7 @@
     },
     {
       "title": "Home Alone 2: Lost in New York",
-      "category": "movie",
+      "category": "Movie",
       "genre": "Comedy",
       "director": "Chris Columbus",
       "year": "1992",

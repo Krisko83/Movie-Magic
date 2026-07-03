@@ -1,38 +1,30 @@
-import fs from 'fs/promises';
-import { v4 as uuid } from 'uuid'
+import fs from 'fs/promises'; 
+import { prisma } from '../../prisma/lib/prisma.js'
 
-async function readDb(colection) {
-    const dbContent = await fs.readFile('./src/db.json', { encoding: 'utf8' });
-    const db = JSON.parse(dbContent);
-
-    if(colection && !db.hasOwnProperty(colection)) {
-        throw new Error('No colection')
-    };
-
-    return colection ? db[colection] : db;
-};
+ 
 
  async function getAll(filter = {}) {    
-    let movies = await readDb('movies');     
+    let movies = await prisma.movie.findMany();     
  
-    if(filter.search) {
-       movies = movies.filter(movie => movie.title.toLowerCase().includes(filter.search.toLowerCase()));
-    };
+    // if(filter.search) {
+    //    movies = movies.filter(movie => movie.title.toLowerCase().includes(filter.search.toLowerCase()));
+    // };
 
-    if(filter.genre) {
-       movies = movies.filter(movie => movie.genre.toLowerCase() === filter.genre.toLowerCase());
-    };
+    // if(filter.genre) {
+    //    movies = movies.filter(movie => movie.genre.toLowerCase() === filter.genre.toLowerCase());
+    // };
 
-    if(filter.year) {
-       movies = movies.filter(movie => movie.year === filter.year);
-    };
+    // if(filter.year) {
+    //    movies = movies.filter(movie => movie.year === filter.year);
+    // };
 
     return movies;
 } 
 
 async function getMovieById(movieId) {
-    const movies = await getAll();
-    const movie = movies.find(m => m.id === movieId);
+    const movie = await prisma.movie.findUnique({
+        where: { id: movieId } 
+    }); 
     
     if(!movie) {
         throw new Error('No movie found!')
@@ -40,22 +32,12 @@ async function getMovieById(movieId) {
     
     return movie;
 };
-
-
-async function writeDb(db) {
-    const content = JSON.stringify(db, null, 2);
-    await fs.writeFile('./src/db.json', content, { encoding: 'utf-8'});
-};
-
-
+ 
 async function create(movieData) {
-    const db = await readDb();
-    movieData.id = uuid();
-    movieData.rating = Number(movieData.rating);
-    
-    db.movies.push(movieData);
+    await prisma.movie.createMany({
+        data: movieData
+    }); 
 
-    await writeDb(db)
 };
 
 const movieRepository = {
