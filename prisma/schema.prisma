@@ -25,19 +25,19 @@ model Movie {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  clients Artist[]  
+  clients Artist[]
 
   @@map("movies")
 }
 
 model Artist {
-  id       String @id @default(cuid())
-  name     String
-  age      Int
-  born     String
-  imageUrl String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String
+  age       Int
+  born      String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   movies Movie[]
 

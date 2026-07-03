@@ -19,18 +19,6 @@ import { prisma } from '../../prisma/lib/prisma.js'
             }
         }
     });     
- 
-    // if(filter.search) {
-    //    movies = movies.filter(movie => movie.title.toLowerCase().includes(filter.search.toLowerCase()));
-    // };
-
-    // if(filter.genre) {
-    //    movies = movies.filter(movie => movie.genre.toLowerCase() === filter.genre.toLowerCase());
-    // };
-
-    // if(filter.year) {
-    //    movies = movies.filter(movie => movie.year === filter.year);
-    // };
 
     return movies;
 } 

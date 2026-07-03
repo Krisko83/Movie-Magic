@@ -26,6 +26,16 @@ movieController.get('/:movieId', async (req, res) => {
     res.render('movies/details', { movie, rating, pageTitle: 'Movie Details' })
 });
 
+movieController.get('/:movieId/attach', async (req, res) => {
+    const movieId = req.params.movieId;   
+    
+    const movie = await movieService.getMovieById(movieId);
+    // const ratingValue = Math.floor(movie.rating);
+    // const rating = '&#x2605;'.repeat(ratingValue);
+
+    res.render('movies/attach', { movie, pageTitle: 'Attach Artist' })
+});
+
 movieController.post('/create', async (req, res) => {
     const newMovie = req.body;
 
