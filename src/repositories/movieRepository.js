@@ -3,14 +3,13 @@ import { prisma } from '../../prisma/lib/prisma.js'
 
 
 
-async function getAll(filter = {}) {
-    filter.year = Number(filter.year);
+async function getAll(filter = {}) {     
 
     let movies = await prisma.movie.findMany({
         where: {
             year: filter.year || undefined,
             title: {
-                contains: filter.search || undefined,
+                contains: filter.search,
                 mode: 'insensitive'
             },
             genre: {
