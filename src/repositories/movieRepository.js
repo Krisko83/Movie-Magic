@@ -1,9 +1,9 @@
-import fs from 'fs/promises'; 
+import fs from 'fs/promises';
 import { prisma } from '../../prisma/lib/prisma.js'
 
- 
 
- async function getAll(filter = {}) {    
+
+async function getAll(filter = {}) {
     filter.year = Number(filter.year);
 
     let movies = await prisma.movie.findMany({
@@ -18,34 +18,52 @@ import { prisma } from '../../prisma/lib/prisma.js'
                 mode: 'insensitive'
             }
         }
-    });     
+    });
 
     return movies;
-} 
+}
 
 async function getMovieById(movieId) {
     const movie = await prisma.movie.findUnique({
-        where: { id: movieId } 
-    }); 
-    
-    if(!movie) {
+        where: { id: movieId },
+        include: {
+            artists: true
+        }
+    });
+
+    if (!movie) {
         throw new Error('No movie found!')
     };
-    
+
     return movie;
 };
- 
+
 async function create(movieData) {
     await prisma.movie.createMany({
         data: movieData
-    }); 
+    });
 
+};
+
+async function attachArtist(movieid, artistId) {
+   const result = await prisma.movie.update({
+        where: { id: movieid },
+        data: {
+            artists:
+            {
+                connect: { id: artistId }
+            }
+        }
+    });
+
+    return result;
 };
 
 const movieRepository = {
     getAll,
     getMovieById,
-    create
+    create,
+    attachArtist
 };
 
 export default movieRepository;

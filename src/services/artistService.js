@@ -5,8 +5,13 @@ import artistRepository from "../repositories/artistRepository";
     return artistRepository.create(artistData)
  }
 
+ function getAll(){
+    return artistRepository.getAll();
+ };
+
  const artistService = {
-    create
+    create,
+    getAll
  }
 
  export default artistService;

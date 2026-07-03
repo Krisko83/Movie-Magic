@@ -16,10 +16,15 @@ function create(movieData) {
    return movieRepository.create(movieData);
 };
 
+function attachArtist(movieId, artistId) {
+    return movieRepository.attachArtist(movieId, artistId);
+}
+
 const movieService = {
     getAll,
     getMovieById,
-    create
+    create,
+    attachArtist
 }
 
 export default movieService;
