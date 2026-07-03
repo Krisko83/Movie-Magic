@@ -20,9 +20,9 @@ movieController.get('/search', async (req, res) => {
 movieController.get('/:movieId', async (req, res) => {
     const movieId = req.params.movieId;
 
-    const movie = await movieService.getMovieById(movieId); 
+    const movie = await movieService.getMovieById(movieId);
     const rating = '&#x2605;'.repeat(Math.floor(movie.rating));
- 
+
     res.render('movies/details', { movie, rating, pageTitle: 'Movie Details' })
 });
 
@@ -30,7 +30,7 @@ movieController.get('/:movieId/attach', async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieService.getMovieById(movieId);
-    const artists = await artistService.getAll();
+    const artists = await artistService.getAll({ exclude: movie.artists.map(artist => artist.id) });
 
     res.render('movies/attach', { movie, artists, pageTitle: 'Attach Artist' })
 });
