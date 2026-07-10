@@ -11,6 +11,10 @@ movieController.get('/create', isAuth, (req, res) => {
 
 movieController.post('/create', isAuth, async (req, res) => {
     const newMovie = req.body;
+    const user = req.user;
+
+    newMovie.creatorId = user.id;
+
     await movieService.create(newMovie);
 
     res.redirect('/');
@@ -28,7 +32,10 @@ movieController.get('/:movieId', async (req, res) => {
     const movie = await movieService.getMovieById(movieId);
     const rating = '&#x2605;'.repeat(Math.floor(movie.rating));
 
-    res.render('movies/details', { movie, rating, pageTitle: 'Movie Details' })
+    const userId = req.user.id;
+    const isOwner = userId !== undefined && userId === movie.creatorId;
+
+    res.render('movies/details', { movie, rating,isOwner,  pageTitle: 'Movie Details' })
 });
 
 movieController.get('/:movieId/attach',isAuth, async (req, res) => {
@@ -56,8 +63,11 @@ movieController.get('/:movieId/edit', async (req, res) => {
     res.render('movies/edit', { movie })
 })  
 
-movieController.get('/:movieId/delete', (req, res) => {
-    
+movieController.get('/:movieId/delete',async (req, res) => {
+    const movieId = req.params.movieId;
+
+    await movieService.remove(movieId);
+    res.redirect('/');
 })
 
 

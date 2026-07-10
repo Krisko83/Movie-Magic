@@ -21,11 +21,16 @@ function attachArtist(movieId, artistId) {
     return movieRepository.attachArtist(movieId, artistId);
 }
 
+function remove(movieId) {
+    return movieRepository.remove(movieId);
+}
+
 const movieService = {
     getAll,
     getMovieById,
     create,
-    attachArtist
+    attachArtist,
+    remove
 }
 
 export default movieService;
