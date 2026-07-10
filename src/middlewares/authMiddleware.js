@@ -11,7 +11,8 @@ export function authMiddleware(req, res, next) {
         const decodedToken = jwt.verify(token, "JWTSECRET");
         req.user = decodedToken;
     } catch (err) {
-        return res.status(401).send('Unauthorized: Invalid token');
+        res.clearCookie('auth')
+        return res.redirect('/auth/login')
     };
 
     next();

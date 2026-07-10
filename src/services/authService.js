@@ -29,15 +29,10 @@ async function login(loginData) {
   
     return token;
 }
-
-function logout(userData) {
-
-}
-
+ 
 const authService = {
     register,
-    login,
-    logout
+    login
 }
 
 export default authService;
