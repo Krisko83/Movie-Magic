@@ -12,10 +12,8 @@ movieController.get('/create', isAuth, (req, res) => {
 movieController.post('/create', isAuth, async (req, res) => {
     const newMovie = req.body;
     const user = req.user;
-
-    newMovie.creatorId = user.id;
-
-    await movieService.create(newMovie);
+ 
+    await movieService.create(newMovie, user);
 
     res.redirect('/');
 });
@@ -60,7 +58,7 @@ movieController.get('/:movieId/edit', async (req, res) => {
 
     const movie = await movieService.getMovieById(movieid);
 
-    res.render('movies/edit', { movie })
+    res.render('movies/edit', { movie , pageTitle: 'Edit Page'})
 })  
 
 movieController.get('/:movieId/delete',async (req, res) => {
