@@ -5,10 +5,17 @@ import jwt from 'jsonwebtoken';
 async function register(userData) {
     const hashPassword = await bcrypt.hash(userData.password, 10);
 
-    return userRepository.create({
+    await userRepository.create({
         ...userData,
         password: hashPassword
     });
+
+    const user = await userRepository.getUser(userData.email);
+
+    const payload = { id: user.id, email: userData.email};
+    const token = jwt.sign(payload, "JWTSECRET", { expiresIn: '1h'});
+  
+    return token;
 }
 
 async function login(loginData) {

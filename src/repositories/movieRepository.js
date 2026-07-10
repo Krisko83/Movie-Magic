@@ -58,12 +58,13 @@ async function attachArtist(movieid, artistId) {
     return result;
 };
 
-async function remove(movieId) {
+async function remove(movieId, userId) {
     const result = await prisma.movie.delete({
         where: {
-            id: movieId
+            id: movieId,
+            creatorId: userId
         }
-    });
+    });    //The database checks if user-a is owner of the movie
 
     return result;
 }
