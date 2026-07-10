@@ -10,8 +10,7 @@ movieController.get('/create', (req, res) => {
 
 movieController.get('/search', async (req, res) => {
     const filter = req.query;
-    console.log(filter);
-
+ 
     const movies = await movieService.getAll(filter);
 
     res.render('movies/search', { movies, filter, pageTitle: 'Search Movies' })
