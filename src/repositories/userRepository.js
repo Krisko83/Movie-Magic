@@ -11,9 +11,9 @@ async function create(userData) {
     return result;
 }
 
-async function getUser(loginData) {
+async function getUser(email) {
     const user = await prisma.user.findUnique({
-        where: { email: loginData.email }
+        where: { email }
     });
 
     return user;
