@@ -1,11 +1,25 @@
 import userRepository from "../repositories/userRepository";
+import bcrypt from 'bcrypt';
 
-function register(userData){
-    return userRepository.register(userData);
+async function register(userData){
+    const hashPassword = await bcrypt.hash(userData.password, 10);
+ 
+    return userRepository.create( {
+        ...userData,
+        password: hashPassword
+    });
 }
 
-function login(userData){
+async function login(loginData){
+    const user = await userRepository.getUser(loginData);
 
+    if(!user) {
+        throw new Error('No such user!')
+    }
+
+    const result = await bcrypt.compare(loginData.password, user.password);
+
+    return result
 }
 
 function logout(userData){

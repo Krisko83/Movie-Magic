@@ -1,18 +1,27 @@
 import { prisma } from "../../prisma/lib/prisma.js";
 
-async function register(userData) {
-    const user = await prisma.user.create({
+async function create(userData) {
+    const result = await prisma.user.create({
         data: {
             email: userData.email,
             password: userData.password
         }
     });
 
+    return result;
+}
+
+async function getUser(loginData) {
+    const user = await prisma.user.findUnique({
+        where: { email: loginData.email }
+    });
+
     return user;
 }
 
 const userRepository = {
-    register
+    create,
+    getUser
 };
 
 export default userRepository;
