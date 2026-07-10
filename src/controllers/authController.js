@@ -16,20 +16,21 @@ authController.get('/logout', (req, res) => {
     res.send('logout')
 });
 
-authController.post('/register',async (req, res) => {
-    const { email, password, repeatPassword} = req.body;
- 
-   await authService.register({ email, password, repeatPassword});
+authController.post('/register', async (req, res) => {
+    const { email, password, repeatPassword } = req.body;
+
+    await authService.register({ email, password, repeatPassword });
 
     res.redirect('/')
-    
+
 })
 
-authController.post('/login',async (req, res) => {
+authController.post('/login', async (req, res) => {
     const loginData = req.body;
 
-    await authService.login(loginData);
+    const token = await authService.login(loginData);
 
+    res.cookie('auth', token, { httpOnly: true });
     res.redirect('/');
 })
 
