@@ -16,10 +16,10 @@ authController.get('/logout', (req, res) => {
     res.send('logout')
 });
 
-authController.post('/register', (req, res) => {
-    const userData = req.body;
+authController.post('/register',async (req, res) => {
+    const { email, password, repeatPassword} = req.body;
  
-    authService.register(userData);
+   await authService.register({ email, password, repeatPassword});
 
     res.redirect('/')
     
