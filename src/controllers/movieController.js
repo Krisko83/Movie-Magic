@@ -2,6 +2,7 @@ import { Router } from 'express';
 import movieService from '../services/movieService.js';
 import artistService from '../services/artistService.js';
 import { isAuth } from '../middlewares/authMiddleware.js';
+import { prepareCategoryViewData } from '../utils/viewUtils,js';
 
 const movieController = Router();
 
@@ -52,18 +53,20 @@ movieController.post('/:movieId/attach', isAuth, async (req, res) => {
 
     res.redirect(`/movies/${movieId}`);
 });
-
+ 
 movieController.get('/:movieId/edit', isAuth, async (req, res) => {
     const movieid = req.params.movieId;
     const userId = req.user.id;
 
     const movie = await movieService.getMovieById(movieid, userId);
 
-    if(movie.creatorId !== userId) {
+    if (movie.creatorId !== userId) {
         return res.status(401).send('Unauthorized')
     }
+ 
+    const categoryOptions = prepareCategoryViewData(movie); 
 
-    res.render('movies/edit', { movie, pageTitle: 'Edit Movie' })
+    res.render('movies/edit', { movie, categoryOptions, pageTitle: 'Edit Movie' })
 })
 
 movieController.get('/:movieId/delete', isAuth, async (req, res) => {
@@ -76,12 +79,12 @@ movieController.get('/:movieId/delete', isAuth, async (req, res) => {
 })
 
 movieController.post('/:movieId/edit', isAuth, async (req, res) => {
-    const movieId = req.params.movieId; 
+    const movieId = req.params.movieId;
     const userId = req.user.id;
     const updatedData = req.body;
- 
+
     await movieService.update(updatedData, movieId, userId)
- 
+
     res.redirect(`/movies/${movieId}`)
 })
 

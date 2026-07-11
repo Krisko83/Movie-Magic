@@ -1,0 +1,17 @@
+export function prepareCategoryViewData(movie) {
+    const categories = ['TV Show', 'Animation', 'Movie', 'Documentary', 'Short Film'];
+
+    const categoryOptions = categories.map(category => {
+        const value = category.toLowerCase().replace(' ', '-');
+
+        const option = {
+            value,
+            label: category,
+            selected: movie.category === value
+        }
+
+        return option;
+    })
+
+    return categoryOptions;
+}
