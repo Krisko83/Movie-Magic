@@ -28,6 +28,7 @@ authController.post('/login', isGuest, async (req, res) => {
     const loginData = req.body;
 
     const token = await authService.login(loginData);
+ 
     res.cookie('auth', token, { httpOnly: true });
     res.redirect('/');
 })
