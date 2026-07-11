@@ -1,7 +1,6 @@
+import "dotenv/config";
 import express from 'express';
 import { engine } from 'express-handlebars';
-import homeController from './controllers/homeController.js';
-import movieController from './controllers/movieController.js';
 import routes from './routes.js';
 import { authMiddleware } from './middlewares/authMiddleware.js';
 import cookieParser from "cookie-parser";
