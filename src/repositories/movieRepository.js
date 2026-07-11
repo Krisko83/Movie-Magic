@@ -69,12 +69,24 @@ async function remove(movieId, userId) {
     return result;
 }
  
+async function update(movieData, movieId) {    
+    const result = await prisma.movie.update({
+        where: {
+            id: movieId
+        },
+        data: movieData
+    })
+
+    return result;
+}
+
 const movieRepository = {
     getAll,
     getMovieById,
     create,
     attachArtist,
-    remove
+    remove,
+    update
 };
 
 export default movieRepository;
