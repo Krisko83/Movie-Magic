@@ -36,11 +36,11 @@ async function remove(movieId, userId) {
     return await movieRepository.remove(movieId, userId);
 }
 
-async function update(movieData, movieId) { 
+async function update(movieData, movieId, userId) { 
     movieData.year = Number(movieData.year);
     movieData.rating = Number(movieData.rating);
 
-    return await movieRepository.update(movieData, movieId);
+    return await movieRepository.update(movieData, movieId, userId);
 }
 
 const movieService = {

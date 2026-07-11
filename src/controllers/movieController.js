@@ -76,13 +76,13 @@ movieController.get('/:movieId/delete', isAuth, async (req, res) => {
 })
 
 movieController.post('/:movieId/edit', isAuth, async (req, res) => {
-    const movieid = req.params.movieId; 
-   
+    const movieId = req.params.movieId; 
+    const userId = req.user.id;
     const updatedData = req.body;
  
-    await movieService.update(updatedData, movieid)
+    await movieService.update(updatedData, movieId, userId)
  
-    res.redirect('/')
+    res.redirect(`/movies/${movieId}`)
 })
 
 

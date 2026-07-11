@@ -69,10 +69,11 @@ async function remove(movieId, userId) {
     return result;
 }
  
-async function update(movieData, movieId) {    
+async function update(movieData, movieId, userId) {    
     const result = await prisma.movie.update({
         where: {
-            id: movieId
+            id: movieId,
+            creatorId: userId
         },
         data: movieData
     })
