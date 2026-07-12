@@ -8,11 +8,11 @@ const routes = Router();
 
 routes.use('/', homeController);
 routes.use('/movies', movieController);
-routes.use('/artists/', artistController);
-routes.use('/auth/', authController)
+routes.use('/artists', artistController);
+routes.use('/auth', authController)
 
 routes.get('*url', (req, res) => {
-    res.render('404')
+    res.render('404', { pageTitle: '404 Not Found!'})
 });
 
 

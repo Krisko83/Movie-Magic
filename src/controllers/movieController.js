@@ -26,7 +26,7 @@ movieController.get('/search', async (req, res) => {
     res.render('movies/search', { movies, filter, pageTitle: 'Search Movies' })
 });
 
-movieController.get('/:movieId', async (req, res) => {
+movieController.get('/details/:movieId', async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getMovieById(movieId);
     const rating = '&#x2605;'.repeat(Math.floor(movie.rating));
@@ -37,7 +37,7 @@ movieController.get('/:movieId', async (req, res) => {
     res.render('movies/details', { movie, rating, isOwner, pageTitle: 'Movie Details' })
 });
 
-movieController.get('/:movieId/attach', isAuth, async (req, res) => {
+movieController.get('/details/:movieId/attach', isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getMovieById(movieId);
     const artists = await artistService.getAll({ exclude: movie.artists.map(artist => artist.id) });
@@ -45,16 +45,17 @@ movieController.get('/:movieId/attach', isAuth, async (req, res) => {
     res.render('movies/attach', { movie, artists, pageTitle: 'Attach Artist' })
 });
 
-movieController.post('/:movieId/attach', isAuth, async (req, res) => {
+movieController.post('/details/:movieId/attach', isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const artistId = req.body.artist;
+    const userId = req.user.id;
 
-    await movieService.attachArtist(movieId, artistId);
+    await movieService.attachArtist(movieId, artistId, userId);
 
-    res.redirect(`/movies/${movieId}`);
+    res.redirect(`/movies/details/${movieId}`);
 });
  
-movieController.get('/:movieId/edit', isAuth, async (req, res) => {
+movieController.get('/details/:movieId/edit', isAuth, async (req, res) => {
     const movieid = req.params.movieId;
     const userId = req.user.id;
 
@@ -69,7 +70,7 @@ movieController.get('/:movieId/edit', isAuth, async (req, res) => {
     res.render('movies/edit', { movie, categoryOptions, pageTitle: 'Edit Movie' })
 })
 
-movieController.get('/:movieId/delete', isAuth, async (req, res) => {
+movieController.get('/details/:movieId/delete', isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const userId = req.user.id;
 
@@ -78,14 +79,14 @@ movieController.get('/:movieId/delete', isAuth, async (req, res) => {
     res.redirect('/');
 })
 
-movieController.post('/:movieId/edit', isAuth, async (req, res) => {
+movieController.post('/details/:movieId/edit', isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const userId = req.user.id;
     const updatedData = req.body;
 
     await movieService.update(updatedData, movieId, userId)
 
-    res.redirect(`/movies/${movieId}`)
+    res.redirect(`/movies/details/${movieId}`)
 })
 
 

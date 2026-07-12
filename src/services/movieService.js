@@ -18,8 +18,8 @@ function create(movieData, userId) {
    return movieRepository.create(movieData);
 };
 
-function attachArtist(movieId, artistId) {
-    return movieRepository.attachArtist(movieId, artistId);
+function attachArtist(movieId, artistId, userId) {
+    return movieRepository.attachArtist(movieId, artistId, userId);
 }
 
 async function remove(movieId, userId) {

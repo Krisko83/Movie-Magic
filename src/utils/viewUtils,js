@@ -8,10 +8,10 @@ export function prepareCategoryViewData(movie) {
             value,
             label: category,
             selected: movie.category === value
-        }
+        };
 
         return option;
-    })
+    });
 
     return categoryOptions;
-}
+};
