@@ -20,8 +20,7 @@ movieController.post('/create', isAuth, async (req, res) => {
 
     try {
         const newMovie = CreateMovieSchema.parse(movieData);
-        console.log(newMovie);
-        
+     
         await movieService.create(newMovie, userId);
 
         res.redirect('/');
@@ -31,12 +30,11 @@ movieController.post('/create', isAuth, async (req, res) => {
         if (err instanceof z.ZodError) {
             const errors = z.flattenError(err).fieldErrors;
             const categoryOptions = prepareCategoryViewData(movieData);
+            
             const firstError = Object.values(errors).flat().at(0)
 
             res.status(400).render('movies/create', { movieData, errors, error: firstError, categoryOptions })
-        }
-        console.log(err);
-
+        } 
     }
 });
 
