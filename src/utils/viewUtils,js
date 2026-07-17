@@ -1,4 +1,4 @@
-export function prepareCategoryViewData(movie) {
+export function prepareCategoryViewData(movie = {}) {
     const categories = ['TV Show', 'Animation', 'Movie', 'Documentary', 'Short Film'];
 
     const categoryOptions = categories.map(category => {

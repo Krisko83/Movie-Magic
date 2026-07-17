@@ -10,12 +10,11 @@ function getMovieById(movieId) {
     return movieRepository.getMovieById(movieId)
 }
 
-function create(movieData, userId) {
-    movieData.year = Number(movieData.year);
-    movieData.rating = Number(movieData.rating);
+async function create(movieData, userId) {    
     movieData.creatorId = userId;
+    console.log('From service',movieData);
     
-   return movieRepository.create(movieData);
+   return await movieRepository.create(movieData);
 };
 
 function attachArtist(movieId, artistId, userId) {

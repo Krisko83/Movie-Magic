@@ -1,22 +1,43 @@
 import { Router } from 'express';
+import * as z from 'zod';
 import movieService from '../services/movieService.js';
 import artistService from '../services/artistService.js';
 import { isAuth } from '../middlewares/authMiddleware.js';
 import { prepareCategoryViewData } from '../utils/viewUtils,js';
+import { CreateMovieSchema } from '../Schemas/movieSchema.js';
 
 const movieController = Router();
 
-movieController.get('/create', isAuth, (req, res) => {
-    res.render('movies/create', { pageTitle: 'Create Movie' })
+movieController.get('/create', isAuth, (req, res) => { 
+             const categoryOptions = prepareCategoryViewData()
+    res.render('movies/create', {categoryOptions, pageTitle: 'Create Movie' })
 });
 
 movieController.post('/create', isAuth, async (req, res) => {
-    const newMovie = req.body;
+    const movieData = req.body;
     const userId = req.user.id;
+           
 
-    await movieService.create(newMovie, userId);
+    try {
+        const newMovie = CreateMovieSchema.parse(movieData);
+        console.log(newMovie);
+        
+        await movieService.create(newMovie, userId);
 
-    res.redirect('/');
+        res.redirect('/');
+
+    } catch (err) {
+
+        if (err instanceof z.ZodError) {
+            const errors = z.flattenError(err).fieldErrors;
+            const categoryOptions = prepareCategoryViewData(movieData);
+            const firstError = Object.values(errors).flat().at(0)
+
+            res.status(400).render('movies/create', { movieData, errors, error: firstError, categoryOptions })
+        }
+        console.log(err);
+
+    }
 });
 
 movieController.get('/search', async (req, res) => {
@@ -54,7 +75,7 @@ movieController.post('/details/:movieId/attach', isAuth, async (req, res) => {
 
     res.redirect(`/movies/details/${movieId}`);
 });
- 
+
 movieController.get('/details/:movieId/edit', isAuth, async (req, res) => {
     const movieid = req.params.movieId;
     const userId = req.user.id;
@@ -64,8 +85,8 @@ movieController.get('/details/:movieId/edit', isAuth, async (req, res) => {
     if (movie.creatorId !== userId) {
         return res.status(401).send('Unauthorized')
     }
- 
-    const categoryOptions = prepareCategoryViewData(movie); 
+
+    const categoryOptions = prepareCategoryViewData(movie);
 
     res.render('movies/edit', { movie, categoryOptions, pageTitle: 'Edit Movie' })
 })

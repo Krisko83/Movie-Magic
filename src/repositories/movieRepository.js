@@ -34,7 +34,9 @@ async function getMovieById(movieId) {
     return movie;
 };
 
-async function create(movieData) {
+async function create(movieData) {    
+    console.log('From repo',movieData);
+
     await prisma.movie.createMany({
         data: movieData
     });
