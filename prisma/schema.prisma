@@ -14,7 +14,7 @@ datasource db {
 
 model Movie {
   id          String   @id @default(cuid())
-  title       String
+  title       String @unique
   category    String
   genre       String
   director    String
@@ -38,7 +38,7 @@ model Artist {
   age         Int
   born        String
   imageUrl    String
-  nameInMovie String?
+  character String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

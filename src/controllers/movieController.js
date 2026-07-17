@@ -5,36 +5,54 @@ import artistService from '../services/artistService.js';
 import { isAuth } from '../middlewares/authMiddleware.js';
 import { prepareCategoryViewData } from '../utils/viewUtils,js';
 import { CreateMovieSchema } from '../Schemas/movieSchema.js';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client';
 
 const movieController = Router();
 
-movieController.get('/create', isAuth, (req, res) => { 
-             const categoryOptions = prepareCategoryViewData()
-    res.render('movies/create', {categoryOptions, pageTitle: 'Create Movie' })
+movieController.get('/create', isAuth, (req, res) => {
+    const categoryOptions = prepareCategoryViewData({})
+    res.render('movies/create', { categoryOptions, pageTitle: 'Create Movie' })
 });
 
 movieController.post('/create', isAuth, async (req, res) => {
     const movieData = req.body;
     const userId = req.user.id;
-           
+
 
     try {
         const newMovie = CreateMovieSchema.parse(movieData);
-     
+
         await movieService.create(newMovie, userId);
 
         res.redirect('/');
 
     } catch (err) {
 
-        if (err instanceof z.ZodError) {
-            const errors = z.flattenError(err).fieldErrors;
-            const categoryOptions = prepareCategoryViewData(movieData);
-            
-            const firstError = Object.values(errors).flat().at(0)
+        let errors = {}
+        let error = null;
 
-            res.status(400).render('movies/create', { movieData, errors, error: firstError, categoryOptions })
-        } 
+        const categoryOptions = prepareCategoryViewData(movieData);
+
+        if (err instanceof z.ZodError) {
+            errors = z.flattenError(err).fieldErrors;
+
+            error = Object.values(errors).flat().at(0)
+
+        } else if (err instanceof PrismaClientKnownRequestError) {
+            console.log(err.code);
+
+            switch (err.code) {
+                case 'P2002':
+                    errors = { title: ['Title must be unique!'] }
+                    break;
+                case 'P2003':
+                    errors = { category: 'Invalid category' }
+                    break;
+            }
+        } else {
+            error = err.message || 'Unexpected error!';
+        }
+        res.status(400).render('movies/create', { movieData, errors, error, categoryOptions })
     }
 });
 

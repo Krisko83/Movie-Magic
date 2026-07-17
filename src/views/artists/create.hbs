@@ -9,23 +9,29 @@
             <ul class="noBullet">
                 <li>
                     <label for="name">Name:</label>
-                    <input type="text" class="inputFields" id="name" name="name" />
+                    <input type="text" class="inputFields" id="name" name="name" value="{{data.name}}"/>
+                    {{> showErrors errors=errors.name}}
                 </li>
                 <li>
                     <label for="age">Age:</label>
-                    <input type="number" class="inputFields" id="age" name="age"  />
+                    <input type="number" class="inputFields" id="age" name="age" value="{{data.age}}" />
+                    {{> showErrors errors=errors.age}}
                 </li>
                 <li>
                     <label for="born">Born:</label>
-                    <input type="text" class="inputFields" id="born" name="born"  />
+                    <input type="text" class="inputFields" id="born" name="born" value="{{data.born}}" />
+                    {{> showErrors errors=errors.born}}
                 </li>
                 <li>
-                    <label for="name-in-movie">Name in Movie:</label>
-                    <input type="text" class="inputFields" id="name-in-movie" name="nameInMovie" />
+                    <label for="character">Name in Movie:</label>
+                    <input type="text" class="inputFields" id="character" name="character" value="{{data.character}}"/>
+                    {{> showErrors errors=errors.character}}
                 </li>
                 <li>
                     <label for="image">Cast Image:</label>
-                    <input type="text" class="inputFields" id="image" name="imageUrl" />
+                    <input type="text" class="inputFields" id="image" name="imageUrl" value="{{data.imageUrl}}"/>
+                    {{> showErrors errors=errors.imageUrl}}
+
                 </li>
                 <li id="center-btn">
                     <button id="create-btn">Add Artist</button>

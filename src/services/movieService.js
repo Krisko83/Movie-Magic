@@ -11,8 +11,7 @@ function getMovieById(movieId) {
 }
 
 async function create(movieData, userId) {    
-    movieData.creatorId = userId;
-    console.log('From service',movieData);
+    movieData.creatorId = userId; 
     
    return await movieRepository.create(movieData);
 };

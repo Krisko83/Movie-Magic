@@ -1,6 +1,6 @@
 import * as z from 'zod';
 
-export const UserCreateSchema = z.object({
+export const ArtistCreateSchema = z.object({
     name: z.string()
         .min(5, { error: 'Name must be at least 5 characters long!' })
         .regex(/^[A-Za-z0-9 ]+$/, { error: 'Name can only contain letters, numbers and whitespaces!' }),
@@ -14,6 +14,6 @@ export const UserCreateSchema = z.object({
         .min(5, { error: 'Character must be at least 5 characters long!' })
         .regex(/^[A-Za-z0-9 ]+$/, { error: 'Character can only contain letters, numbers and whitespaces!' }),
     imageUrl: z.string()
-        .regex(/^Https?:\/\//, { error: 'Image URL must start http:// or https://' })
+        .regex(/^https?:\/\//, { error: 'Image URL must start http:// or https://' })
 
 })
