@@ -39,8 +39,6 @@ movieController.post('/create', isAuth, async (req, res) => {
             error = Object.values(errors).flat().at(0)
 
         } else if (err instanceof PrismaClientKnownRequestError) {
-            console.log(err.code);
-
             switch (err.code) {
                 case 'P2002':
                     errors = { title: ['Title must be unique!'] }

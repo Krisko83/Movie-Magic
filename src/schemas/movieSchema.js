@@ -1,5 +1,3 @@
-
-import { title } from 'node:process';
 import * as z from 'zod';
 
 export const CreateMovieSchema = z.object({

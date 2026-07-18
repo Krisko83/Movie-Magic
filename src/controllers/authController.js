@@ -1,6 +1,9 @@
 import { Router } from "express";
 import authService from "../services/authService";
 import { isAuth, isGuest } from "../middlewares/authMiddleware";
+import { UserCreateSchema } from "../Schemas/userSchema";
+import * as z from 'zod';
+import { getErrorMessage } from "../utils/errorUitls";
 
 const authController = Router();
 
@@ -10,27 +13,39 @@ authController.get('/register', isGuest, (req, res) => {
 
 
 authController.get('/login', isGuest, (req, res) => {
-    res.render('auth/login')
+    res.render('auth/login');
 });
 
 
 authController.post('/register', isGuest, async (req, res) => {
     const userData = req.body;
 
-    const token = await authService.register(userData);
+    try {
+        const user = await UserCreateSchema.parseAsync(userData)
+        const token = await authService.register(user);
 
-    res.cookie('auth', token, { httpOnly: true })
-    res.redirect('/')
+        res.cookie('auth', token, { httpOnly: true })
+        res.redirect('/')
+    } catch (err) {
+        const error = getErrorMessage(err);
 
-})
+        res.render('auth/register', { ...userData, error });
+    };
+
+});
 
 authController.post('/login', isGuest, async (req, res) => {
     const loginData = req.body;
-
-    const token = await authService.login(loginData);
- 
-    res.cookie('auth', token, { httpOnly: true });
-    res.redirect('/');
+    
+    try { 
+        const token = await authService.login(loginData); 
+        
+        res.cookie('auth', token, { httpOnly: true });
+        res.redirect('/');
+    } catch (err) {
+        const error = getErrorMessage(err)
+        res.render('auth/login', { loginData, error })
+    }
 })
 
 authController.get('/logout', isAuth, (req, res) => {
