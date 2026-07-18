@@ -109,8 +109,8 @@ movieController.get('/details/:movieId/edit', isAuth, async (req, res) => {
 
 movieController.get('/details/:movieId/delete', isAuth, async (req, res) => {
     const movieId = req.params.movieId;
-    const userId = req.user.id;
-
+    const userId = req.user.id; 
+    
     await movieService.remove(movieId, userId);
 
     res.redirect('/');
