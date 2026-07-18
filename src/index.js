@@ -12,6 +12,9 @@ app.engine('hbs', engine({
     helpers: {
         isSelected() {
             return this.selected ? 'selected' : '';
+        },
+        setTitle(title){
+            this.pageTitle = title
         }
     }
 }

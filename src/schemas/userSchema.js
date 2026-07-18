@@ -8,13 +8,12 @@ export const UserCreateSchema = z.object({
         .refine(async (email) => {
             const user = await userRepository.getUser(email)
             return !user;
-        }, {error: 'Email already exists!'}),
+        }, { error: 'Email already exists!' }),
     password: z.string()
         .min(6, { error: 'Password must be at least 6 characters long!' })
         .regex(/^[A-Za-z0-9]+$/, { error: 'Password can only contain letters, numbers and spawhitespacesces!' }),
-    repeatPassword: z.string().optional
+    repeatPassword: z.string()
 }).refine((data) => data.password === data.repeatPassword, {
     error: 'Passwords do not match',
     path: ['RepeatPassword']
 }).transform(({ repeatPassword, ...data }) => data);
- 

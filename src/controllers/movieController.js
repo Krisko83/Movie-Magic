@@ -11,7 +11,7 @@ const movieController = Router();
 
 movieController.get('/create', isAuth, (req, res) => {
     const categoryOptions = prepareCategoryViewData({})
-    res.render('movies/create', { categoryOptions, pageTitle: 'Create Movie' })
+    res.render('movies/create', { categoryOptions })
 });
 
 movieController.post('/create', isAuth, async (req, res) => {
@@ -58,7 +58,7 @@ movieController.get('/search', async (req, res) => {
     const filter = req.query;
     const movies = await movieService.getAll(filter);
 
-    res.render('movies/search', { movies, filter, pageTitle: 'Search Movies' })
+    res.render('movies/search', { movies, filter })
 });
 
 movieController.get('/details/:movieId', async (req, res) => {
@@ -69,7 +69,7 @@ movieController.get('/details/:movieId', async (req, res) => {
     const userId = req.user?.id;
     const isOwner = movie.creatorId && movie.creatorId === userId;
 
-    res.render('movies/details', { movie, rating, isOwner, pageTitle: 'Movie Details' })
+    res.render('movies/details', { movie, rating, isOwner })
 });
 
 movieController.get('/details/:movieId/attach', isAuth, async (req, res) => {
@@ -77,7 +77,7 @@ movieController.get('/details/:movieId/attach', isAuth, async (req, res) => {
     const movie = await movieService.getMovieById(movieId);
     const artists = await artistService.getAll({ exclude: movie.artists.map(artist => artist.id) });
 
-    res.render('movies/attach', { movie, artists, pageTitle: 'Attach Artist' })
+    res.render('movies/attach', { movie, artists })
 });
 
 movieController.post('/details/:movieId/attach', isAuth, async (req, res) => {
@@ -102,7 +102,7 @@ movieController.get('/details/:movieId/edit', isAuth, async (req, res) => {
 
     const categoryOptions = prepareCategoryViewData(movie);
 
-    res.render('movies/edit', { movie, categoryOptions, pageTitle: 'Edit Movie' })
+    res.render('movies/edit', { movie, categoryOptions })
 })
 
 movieController.get('/details/:movieId/delete', isAuth, async (req, res) => {

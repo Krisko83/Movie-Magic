@@ -8,7 +8,7 @@ import * as z from 'zod'
 const artistController = Router();
 
 artistController.get('/create', isAuth, (req, res) => {
-    res.render('artists/create', { pageTitle: 'Create Artist' });
+    res.render('artists/create');
 })
 
 artistController.post('/create', isAuth, async (req, res) => {
