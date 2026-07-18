@@ -1,4 +1,4 @@
-import { Router } from "express";
+import e, { Router } from "express";
 import artistService from "../services/artistService";
 import { isAuth } from "../middlewares/authMiddleware";
 import { ArtistCreateSchema } from "../schemas/artistSchema";
@@ -22,11 +22,10 @@ artistController.post('/create', isAuth, async (req, res) => {
     } catch (err) {
         const error = getErrorMessage(err);
         const errors = z.flattenError(err).fieldErrors;
-
+      
         res.status(400).render('artists/create', { artist: data, error, errors });
-
     };
 
-})
+});
 
 export default artistController;

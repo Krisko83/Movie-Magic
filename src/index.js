@@ -4,19 +4,13 @@ import { engine } from 'express-handlebars';
 import routes from './routes.js';
 import { authMiddleware } from './middlewares/authMiddleware.js';
 import cookieParser from "cookie-parser";
+import * as helpers from './views/helpers'
 
 const app = express();
 
 app.engine('hbs', engine({
     extname: 'hbs',
-    helpers: {
-        isSelected() {
-            return this.selected ? 'selected' : '';
-        },
-        setTitle(title){
-            this.pageTitle = title
-        }
-    }
+    helpers
 }
 ));
 app.set('view engine', 'hbs');

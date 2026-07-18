@@ -10,10 +10,6 @@ export const ArtistCreateSchema = z.object({
     born: z.string()
         .min(10, { error: 'Born must be at least 10 characters long!' })
         .regex(/^[A-Za-z0-9 ]+$/, { error: 'Born can only contain letters, numbers and whitespaces!' }),
-    character: z.string()
-        .min(5, { error: 'Character must be at least 5 characters long!' })
-        .regex(/^[A-Za-z0-9 ]+$/, { error: 'Character can only contain letters, numbers and whitespaces!' }),
     imageUrl: z.string()
         .regex(/^https?:\/\//, { error: 'Image URL must start http:// or https://' })
-
 })

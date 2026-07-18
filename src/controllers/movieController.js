@@ -75,8 +75,9 @@ movieController.get('/details/:movieId', async (req, res) => {
 movieController.get('/details/:movieId/attach', isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getMovieById(movieId);
-    const artists = await artistService.getAll({ exclude: movie.artists.map(artist => artist.id) });
-
+ 
+    const artists = await artistService.getAll({ exclude: movie.artists.map(artist => artist.artistId) }); 
+ 
     res.render('movies/attach', { movie, artists })
 });
 
@@ -84,8 +85,9 @@ movieController.post('/details/:movieId/attach', isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const artistId = req.body.artist;
     const userId = req.user.id;
-
-    await movieService.attachArtist(movieId, artistId, userId);
+    const character = req.body.character; 
+    
+    await movieService.attachArtist(movieId, artistId, userId, character);
 
     res.redirect(`/movies/details/${movieId}`);
 });

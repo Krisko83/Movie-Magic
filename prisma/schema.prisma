@@ -14,7 +14,7 @@ datasource db {
 
 model Movie {
   id          String   @id @default(cuid())
-  title       String @unique
+  title       String   @unique
   category    String
   genre       String
   director    String
@@ -26,33 +26,51 @@ model Movie {
   updatedAt   DateTime @updatedAt
   creatorId   String?
 
-  artists Artist[]
-  creator User?     @relation(fields: [creatorId], references: [id])
+  artists MovieArtists[]
+
+  creator User? @relation(fields: [creatorId], references: [id])
 
   @@map("movies")
 }
 
 model Artist {
-  id          String   @id @default(cuid())
-  name        String
-  age         Int
-  born        String
-  imageUrl    String
-  character String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String
+  age       Int
+  born      String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  movies Movie[]
+  movies MovieArtists[] 
 
   @@map("artists")
 }
 
+model MovieArtists {
+  movieId   String
+  artistId  String
+  character String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  movie  Movie  @relation(fields: [movieId], references: [id])
+  artist Artist @relation(fields: [artistId], references: [id])
+
+  @@id([movieId, artistId])
+  @@map("movie_artist")
+}
+
 model User {
-  id       String @id @default(cuid())
-  email    String @unique
-  password String
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
 
   movies Movie[]
 
   @@map("users")
 }
+
+ 
