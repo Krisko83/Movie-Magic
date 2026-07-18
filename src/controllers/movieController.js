@@ -50,6 +50,7 @@ movieController.post('/create', isAuth, async (req, res) => {
         } else {
             error = err.message || 'Unexpected error!';
         }
+        
         res.status(400).render('movies/create', { movieData, errors, error, categoryOptions })
     }
 });

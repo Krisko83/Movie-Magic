@@ -1,4 +1,3 @@
-import { error } from 'node:console';
 import * as z from 'zod';
 
 export const getErrorMessage = (error) => {
@@ -6,7 +5,7 @@ export const getErrorMessage = (error) => {
 
     if (error.name === 'ZodError') {
         const errors = z.flattenError(error).fieldErrors;
-        errorMessage = Object.values(errors).flat().at(0) || 'Invalid input';
+        errorMessage = Object.values(errors)?.flat().at(0) || 'Invalid input';
     } else if (error.name - 'PrismaClientKnownRequestError') {
         switch (error.code) {
             case 'P2002':
@@ -17,10 +16,11 @@ export const getErrorMessage = (error) => {
             default:
                 errorMessage = 'Database error'
         }
-    } else {
+    }  else {
         errorMessage = error.message || 'An unexpected error '
     }
 
     return errorMessage;
 }
+
  

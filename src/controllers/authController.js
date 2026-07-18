@@ -1,7 +1,7 @@
 import { Router } from "express";
 import authService from "../services/authService";
 import { isAuth, isGuest } from "../middlewares/authMiddleware";
-import { UserCreateSchema } from "../Schemas/userSchema";
+import { UserCreateSchema, UserLoginSchema } from "../Schemas/userSchema";
 import * as z from 'zod';
 import { getErrorMessage } from "../utils/errorUitls";
 
@@ -28,23 +28,25 @@ authController.post('/register', isGuest, async (req, res) => {
         res.redirect('/')
     } catch (err) {
         const error = getErrorMessage(err);
-
-        res.render('auth/register', { ...userData, error });
+        const errors = z.flattenError(err).fieldErrors;
+        res.render('auth/register', { ...userData, error, errors });
     };
 
 });
 
 authController.post('/login', isGuest, async (req, res) => {
     const loginData = req.body;
-    
-    try { 
-        const token = await authService.login(loginData); 
-        
+
+    try {
+        const user = await UserLoginSchema.parseAsync(loginData)
+        const token = await authService.login(user);
+
         res.cookie('auth', token, { httpOnly: true });
         res.redirect('/');
     } catch (err) {
-        const error = getErrorMessage(err)
-        res.render('auth/login', { loginData, error })
+        const error = getErrorMessage(err);     
+
+        res.render('auth/login', { loginData, error });
     }
 })
 

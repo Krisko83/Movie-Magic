@@ -17,3 +17,17 @@ export const UserCreateSchema = z.object({
     error: 'Passwords do not match',
     path: ['RepeatPassword']
 }).transform(({ repeatPassword, ...data }) => data);
+
+
+
+export const UserLoginSchema = z.object({
+    email: z.string()
+        .email({ error: 'Invalid email!' })
+        .min(10, { error: 'Email must be at least 10 characters long!' })
+        .refine(async (email) => {
+            const user = await userRepository.getUser(email)
+            return user;
+        }, { error: 'Email does not exists!' }),
+    password: z.string()
+        .min(6, { error: 'Password must be at least 6 characters long!' })
+})
